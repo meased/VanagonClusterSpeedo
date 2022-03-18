@@ -2,8 +2,7 @@
 
 Personal project to replace a broken Vanagon speedometer unit.
 
-
-## Features
+![photo](VFD_red_filter.jpg)
 
 - Speedometer.
 - Odometer.
