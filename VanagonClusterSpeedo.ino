@@ -24,6 +24,7 @@
                                    // is just for documentation.
 
 #define UPDATE_RATE             1000  // ms
+#define OIL_CHANGE_INTERVAL     50000  // 1/10 miles
 
 const unsigned long pulses_per_mile = 9839;
 const unsigned long pulses_per_tenth_mile = pulses_per_mile / 10;
@@ -45,11 +46,11 @@ float mph = 0;
 LiquidCrystal lcd(RS, EN, D4, D5, D6, D7);
 DailyStruggleButton reset_button;
 
-enum TripIndex {
+enum Trip {
     TRIP_A,
     TRIP_B,
     TRIP_OIL
-}
+};
 
 void on_reset_button(uint8_t btnStatus){
     switch (btnStatus){
@@ -134,13 +135,16 @@ void draw(void) {
 
     // Hide high digit when under 10 MPH.
     if (mphi >= 10)
-        big_digit(6, 0, 0, mphi / 10);
+        big_digit(5, 0, 0, mphi / 10);
     else
-        big_space(6, 0, 0);
-    big_digit(6, 0, 1, mphi % 10);
+        big_space(5, 0, 0);
+    big_digit(5, 0, 1, mphi % 10);
 
     lcd.setCursor(15, 1);
     lcd.print("MPH");
+
+    lcd.setCursor(0, 0);
+    lcd.write((byte) (trip[TRIP_OIL] > OIL_CHANGE_INTERVAL) ? OIL : ' ');
 
     build_odo_string(odo + odo_new, buf);
     lcd.setCursor(0, 3);
