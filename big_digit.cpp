@@ -3,36 +3,36 @@
 
 extern LiquidCrystal lcd;
 
-const uint8_t zero[] =  { TL, HH, HH, TR,
-                          VV, SS, SS, VV,
-                          BL, HH, HH, BR };
-const uint8_t one[] =   { SS, HH, TR, SS,
-                          SS, SS, VV, SS,
-                          SS, HH, HH, HH };
-const uint8_t two[] =   { HH, HH, HH, TR,
-                          TL, HH, HH, BR,
-                          HH, HH, HH, HH };
-const uint8_t three[] = { HH, HH, HH, TR,
-                          SS, HH, HH, VV,
-                          HH, HH, HH, BR };
-const uint8_t four[] =  { VV, SS, SS, VV,
-                          BL, HH, HH, VV,
-                          SS, SS, SS, HH };
-const uint8_t five[] =  { VV, HH, HH, HH,
-                          BL, HH, HH, TR,
-                          HH, HH, HH, BR };
-const uint8_t six[] =   { TL, HH, HH, HH,
-                          VV, HH, HH, TR,
-                          BL, HH, HH, BR };
-const uint8_t seven[] = { HH, HH, HH, TR,
-                          SS, SS, SS, VV,
-                          SS, SS, SS, HH };
-const uint8_t eight[] = { TL, HH, HH, TR,
-                          VV, HH, HH, VV,
-                          BL, HH, HH, BR };
-const uint8_t nine[] =  { TL, HH, HH, TR,
-                          BL, HH, HH, VV,
-                          HH, HH, HH, BR };
+const uint8_t zero[] =  { TL, HH, HH, TR, SS,
+                          VV, SS, SS, VV, SS,
+                          BL, HH, HH, BR, SS };
+const uint8_t one[] =   { SS, HH, TR, SS, SS,
+                          SS, SS, VV, SS, SS,
+                          SS, HH, HH, HH, SS };
+const uint8_t two[] =   { HH, HH, HH, TR, SS,
+                          TL, HH, HH, BR, SS,
+                          HH, HH, HH, HH, SS };
+const uint8_t three[] = { HH, HH, HH, TR, SS,
+                          SS, HH, HH, VV, SS,
+                          HH, HH, HH, BR, SS };
+const uint8_t four[] =  { VV, SS, SS, VV, SS,
+                          BL, HH, HH, VV, SS,
+                          SS, SS, SS, HH, SS };
+const uint8_t five[] =  { VV, HH, HH, HH, SS,
+                          BL, HH, HH, TR, SS,
+                          HH, HH, HH, BR, SS };
+const uint8_t six[] =   { TL, HH, HH, HH, SS,
+                          VV, HH, HH, TR, SS,
+                          BL, HH, HH, BR, SS };
+const uint8_t seven[] = { HH, HH, HH, TR, SS,
+                          SS, SS, SS, VV, SS,
+                          SS, SS, SS, HH, SS };
+const uint8_t eight[] = { TL, HH, HH, TR, SS,
+                          VV, HH, HH, VV, SS,
+                          BL, HH, HH, BR, SS };
+const uint8_t nine[] =  { TL, HH, HH, TR, SS,
+                          BL, HH, HH, VV, SS,
+                          HH, HH, HH, BR, SS };
 
 const uint8_t *digits[] = {zero, one, two, three, four, five, six, seven, eight, nine};
 

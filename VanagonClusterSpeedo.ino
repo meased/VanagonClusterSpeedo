@@ -83,9 +83,10 @@ void on_reset_button(uint8_t btnStatus){
     }
 }
 
-
 ///
 // sprintf doesn't support longs on Arduino so we roll our own.
+//
+// buf must have space for at least 7 bytes.
 //
 void build_odo_string(unsigned long val, char *buf) {
     // Stored in 1/10th miles.
@@ -106,7 +107,8 @@ void build_odo_string(unsigned long val, char *buf) {
 }
 
 ///
-// This differs from build_trip_string because it draws a 1/10th mileage digit.
+// Same as build_odo_string, but also draws 0.1 digit.
+//
 void build_trip_string(unsigned long val, char *buf) {
     int i = 5;
 
@@ -151,19 +153,15 @@ void draw(void) {
     lcd.print(buf);
     lcd.print(" mi");
 
+    lcd.setCursor(19, 3);
     switch (trip_index) {
     case TRIP_A:
-        lcd.setCursor(19, 3);
         lcd.print("A");
         break;
-
     case TRIP_B:
-        lcd.setCursor(19, 3);
         lcd.print("B");
         break;
-
     case TRIP_OIL:
-        lcd.setCursor(19, 3);
         lcd.write((byte) OIL);
         break;
     }
@@ -205,7 +203,7 @@ void EEPROM_store() {
     //  1. Uncomment the following lines.
     //  2. Edit to the desired milage.
     //  3. Upload to unit.
-    //  4. Hold reset.
+    //  4. Hold reset button.
     //  5. Comment out the following lines.
     //  6. Upload to unit.
 
@@ -230,6 +228,7 @@ void EEPROM_store() {
 
 void setup() {
     //Serial.begin(57600);
+    delay(200);
 
     pinMode(PIN_VSS, INPUT);
 
@@ -251,7 +250,7 @@ void loop() {
         pulses = FreqCount.read();
         mph = pulses * pulses_to_mph;
 
-        // To save EEPROM writes, we only save when we are going faster than
+        // To save EEPROM writes, only save when we are going faster than
         // 15 MPH and then slow down to under 5 MPH.
         if (mph > 15 and !speed_armed)
             speed_armed = true;

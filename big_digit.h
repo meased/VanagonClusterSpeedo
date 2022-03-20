@@ -3,8 +3,8 @@
 #include <stdint.h>
 #include <stdbool.h>
 
-#define DIGIT_WIDTH         4
-#define DIGIT_BLANK_LINE    "    "
+#define DIGIT_WIDTH         5
+#define DIGIT_BLANK_LINE    "     "
 
 // Character cell codes.
 #define HH      0
