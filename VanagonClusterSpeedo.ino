@@ -26,7 +26,7 @@
 #define UPDATE_RATE             1000  // ms
 #define OIL_CHANGE_INTERVAL     50000  // 1/10 miles
 
-const unsigned long pulses_per_mile = 9839;
+const unsigned long pulses_per_mile = 9500;
 const unsigned long pulses_per_tenth_mile = pulses_per_mile / 10;
 const float pulses_to_mph = (1000.0/UPDATE_RATE * 3600.0) / pulses_per_mile;
 const float pulses_to_mile = 1.0 / pulses_per_mile;
@@ -207,10 +207,10 @@ void EEPROM_store() {
     //  5. Comment out the following lines.
     //  6. Upload to unit.
 
-    //odo = 10 * 284536;
-    //trip[TRIP_A] = 10 * 5.2;
-    //trip[TRIP_B] = 10 * 0;
-    //trip[TRIP_OIL] = 10 * 0;
+    //odo = (unsigned long) 10 * 284595;
+    //trip[TRIP_A] = (unsigned long) 10 * 4.7;
+    //trip[TRIP_B] = (unsigned long) 10 * 58.4;
+    //trip[TRIP_OIL] = (unsigned long) 10 * 3625;
     //pulses_acc = 0;
     //trip_index = TRIP_A;
 
@@ -228,8 +228,6 @@ void EEPROM_store() {
 
 void setup() {
     //Serial.begin(57600);
-    delay(200);
-
     pinMode(PIN_VSS, INPUT);
 
     EEPROM_load();
@@ -237,13 +235,19 @@ void setup() {
     reset_button.enableLongPress(1000);
 
     lcd.begin(20, 4);
+    delay(100);
+    lcd.noAutoscroll();
+    lcd.noCursor();
+    lcd.noBlink();
     lcd.clear();
+    delay(100);
     big_digit_init();
 
     FreqCount.begin(UPDATE_RATE);
 }
 
 void loop() {
+    unsigned long v;
     reset_button.poll();
 
     if (FreqCount.available()) {

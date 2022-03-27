@@ -19,7 +19,7 @@ const uint8_t four[] =  { VV, SS, SS, VV, SS,
                           BL, HH, HH, VV, SS,
                           SS, SS, SS, HH, SS };
 const uint8_t five[] =  { VV, HH, HH, HH, SS,
-                          BL, HH, HH, TR, SS,
+                          HH, HH, HH, TR, SS,
                           HH, HH, HH, BR, SS };
 const uint8_t six[] =   { TL, HH, HH, HH, SS,
                           VV, HH, HH, TR, SS,
